@@ -1,6 +1,14 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
-    primary.item :account, t('application.menu.account'), my_account_path, if: Proc.new{ logged_in? }
-    primary.item :login, t('application.menu.login'), login_path, unless: Proc.new{ logged_in? }
+    primary.dom_id = 'main-navigation'
+
+    primary.item :account, t('application.menu.account'), my_account_path,
+      class: "main-navigation-item", link: { class: "main-navigation-link", title: t("application.menu.account_title") }, if: Proc.new{ logged_in? }
+
+    primary.item :logout, t('application.menu.logout'), logout_path,
+      class: "main-navigation-item", link: { class: "main-navigation-link", title: t("application.menu.logout_title") }, if: Proc.new{ logged_in? }
+
+    primary.item :login, t('application.menu.login'), login_path,
+      class: "main-navigation-item", link: { class: "main-navigation-link", title: t("application.menu.login_title") }, unless: Proc.new{ logged_in? }
   end
 end
