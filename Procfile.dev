@@ -1,0 +1,2 @@
+app: rails s
+db: mongod run --config db/mongoid.conf

@@ -1,0 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:600,400,700|Play:400,700|Allerta+Stencil)
+
+/* @ Font families @ */
+@mixin sans-font
+  font-family: 'Josefin Sans', sans-serif
+
+@mixin square-font
+  font-family: 'Play', sans-serif
+
+@mixin stensil-font
+  font-family: 'Allerta Stencil', sans-serif
+
+/* @ Font sizes @ */
+@mixin normal-font-size
+  font-size: 20px
+
+@mixin large-font-size
+  font-size: 50px
+
+@mixin huge-font-size
+  font-size: 70px
+
+/* @ Standard html typography elements @ */
+h1
+  @include large-font-size
+
+/* @ Text shadow @ */
+html.textshadow
+  // Inset text into background
+  .inset-text-shadow
+    text-shadow: 0px -1px darken($alt_font_color, 20), 0px 1px lighten($alt_font_color, 70)

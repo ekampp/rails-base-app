@@ -1,0 +1,36 @@
+body
+  background: $bg_color image-url("bg-pattern.png") repeat
+  color: $font_color
+
+a, a:active, a:hover, a:visited
+  color: $font_color
+  font-weight: bold
+
+// Bring back that hot pink.
+::-moz-selection
+  background: $selection_color
+  color: lighten($selection_color, 60) !important
+::selection
+  background: $selection_color
+  color: lighten($selection_color, 60) !important
+html.textshadow
+  ::selection
+    text-shadow: none
+  ::-moz-selection
+    text-shadow: none
+
+/* Application title */
+#app-title
+  @include huge-font-size
+  letter-spacing: 6px
+  color: $alt_font_color
+  text-decoration: none
+
+/* Debug and inspect */
+.debug_dump
+  border: solid 1px $font_color
+  @include border-radius(10px)
+  padding: 10px
+  background-color: $alt_font_color
+  color: #fff
+  @include box-shadow(inset 2px 2px 10px $font_color)

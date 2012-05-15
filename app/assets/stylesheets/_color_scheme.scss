@@ -1,0 +1,13 @@
+// By default, use hex colors
+$bg_color: #DFDFDF;
+$font_color: #69686D;
+$alt_font_color: #868686;
+$selection_color: #F718FF;
+
+// If the browser supports hsla, use that
+html.hsla {
+  $bg_color: hsla(0,0%,87%,1);
+  $font_color: hsla(251, 2%, 42%, 1);
+  $alt_font_color: hsla(0,0%,53%,1);
+  $selection_color: hsla(298,100%,55%,1);
+}
