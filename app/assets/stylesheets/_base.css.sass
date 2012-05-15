@@ -1,3 +1,6 @@
+html
+  overflow-y: scroll
+
 body
   background: $bg_color image-url("bg-pattern.png") repeat
   color: $font_color
@@ -10,15 +13,12 @@ a, a:active, a:hover, a:visited
 // Bring back that hot pink.
 ::-moz-selection
   background: $selection_color
-  color: lighten($selection_color, 60) !important
+  color: lighten($selection_color, 40) !important
+  text-shadow: none
 ::selection
   background: $selection_color
-  color: lighten($selection_color, 60) !important
-html.textshadow
-  ::selection
-    text-shadow: none
-  ::-moz-selection
-    text-shadow: none
+  color: lighten($selection_color, 40) !important
+  text-shadow: none
 
 /* Application title */
 #app-title
@@ -38,7 +38,8 @@ html.textshadow
 
 /* Main navigation */
 #main-navigation-container
-  margin: 30px 0px
+  @include box-sizing(border-box)
+  padding: 30px 0px
   text-align: right
 li.main-navigation-item
   @include inline-block
