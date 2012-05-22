@@ -1,0 +1,5 @@
+/ General user information
+/ Loop through the info hash, and display fields for the user to edit this.
+= form.simple_fields_for :info do |info_form|
+  - @user.info.each_pair do |key, value|
+    = info_form.input key.to_sym, as: :string, input_html: { value: value }

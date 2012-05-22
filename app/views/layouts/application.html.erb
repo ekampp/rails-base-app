@@ -54,6 +54,12 @@
         <%= render_navigation level: 1 %>
       </nav>
     </div>
+    <div class="row">
+      <div class="twelvecol">
+        <%= notice_box flash[:notice] if flash[:notice].present? %>
+        <%= alert_box flash[:alert] if flash[:alert].present? %>
+      </div>
+    </div>
   </header>
 
   <section class="container" id="main-content">

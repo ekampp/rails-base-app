@@ -15,7 +15,8 @@ class Ability
 
       # Setting user model permissions
       can :create, User
-      can :manage, User, id: user.id
+      can :update, User, id: user.id
+      can :destroy, User, id: user.id
     end
   end
 end

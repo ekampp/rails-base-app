@@ -1,0 +1,6 @@
+/ Admin related information about the user
+
+%p= info_box t('.provider', provider: form.object.provider)
+
+= form.input :role, collection: User.possible_roles, include_blank: false
+= form.input :banned, as: :boolean, hint: t('.banned_user_hint')

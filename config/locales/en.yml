@@ -16,16 +16,9 @@ en:
       login_required: "You must login to access that resource"
       no_account: "No account found, matching those credentials"
 
-  user_mailer:
-    welcome:
-      subject: "Welcome to future game."
-    godbye:
-      subject: "Thank you for playing!"
-
-  character_mailer:
-    created:
-      subject: "The legend, %{name} has been born."
-    updated:
-      subject: "%{name} has new stuff!"
-    destroyed:
-      subject: "We are sorry to tell you, but %{name} has been killed."
+  users:
+    admin_form:
+      banned_user_hint: "Banning the user will disable their login."
+      provider: "Last login was through %{provider}"
+    edit:
+      cancel: "Cancel"

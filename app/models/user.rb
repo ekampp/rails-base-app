@@ -4,7 +4,7 @@ class User
                             #       marked for deletion. <emil@kampp.me>
 
   # Field definitions
-  field :role, type: String, :default => "player"
+  field :role, type: String, :default => "user"
   field :provider, type: String
   field :uid, type: String
   field :info, type: Hash
@@ -17,6 +17,13 @@ class User
   # Validations
   # validates :uid, presence: true, uniqueness: true
   validates :provider, presence: true
-  validates :role, inclusion: { in: %w(player admin) }
+  validates :role, inclusion: { in: Proc.new{ possible_roles } }
+
+  #
+  # Will return an array of possible roles, that a user can have
+  #
+  def self.possible_roles
+    [ "user", "admin" ]
+  end
 
 end

@@ -1,0 +1,58 @@
+/*
+ * NOTE: The width of the `*_section` elements are defined in simple_form.rb in
+ *       the initializers directory. <emil@kampp.me>
+ */
+
+html.boxshadow
+  .input_block
+    @include box-shadow(inset 1px 1px 5px $alt_font_color)
+
+.input_block
+  display: block
+  margin-bottom: 20px
+  padding: 7px 0px
+  border: solid 1px $alt_font_color
+  background-color: lighten($bg_color, 20)
+
+.label_section
+  .hint
+    text-align: right
+    display: block
+    @include diminutive-font-size
+
+  .control-label
+    text-align: right
+    display: block
+    margin-right: -42px
+    padding-right: 42px
+    padding-top: 11px
+
+.input_section
+  // Standard selects
+  select.select
+    width: 100%
+    height: 40px
+    border: solid 1px transparent
+    margin-top: 5px
+    margin-bottom: 2px
+    // NOTE: There might be more vendor prefixes
+    -webkit-appearance: none
+
+  // All input fields - see bourbon documentation
+  #{$all-text-inputs}
+    width: 100%
+    height: 40px
+    border: none
+    background-color: transparent
+    outline: none
+    padding: 5px
+
+// Special case of check boxes not aligning due to alternative height
+.input_block.boolean
+  padding: 16px 0px
+
+  .control-label
+    padding-top: 3px
+  .input_section
+    input.boolean
+      margin-top: 9px

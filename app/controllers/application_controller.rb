@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   # computer.
   #
   def current_user
-    logger.debug { "APP CONTROLLER: Current user_id session: #{session[:user_id]}." }
     @current_user ||= User.find(session[:user_id]) rescue nil if session[:user_id].present?
   end
   helper_method :current_user

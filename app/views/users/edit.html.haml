@@ -1,2 +1,12 @@
 %header.row
   %h1.inset-text-shadow.twelvecol= t('.edit_your_profile')
+
+%section.row
+  .twelvecol
+    .container
+      = simple_form_for @user do |form|
+        = render partial: "admin_form", locals: { form: form } if can? :manage, @user
+        = render partial: "info_form", locals: { form: form }
+        .buttons
+          = link_to t('.cancel'), root_path, class: "button cancel"
+          = form.button :submit, class: "commit"
