@@ -1,0 +1,39 @@
+%header.row
+  %h1.inset-text-shadow.primary.twelvecol= t('.users_list')
+
+.row
+  %section.ninecol
+
+  %aside.threecol.last
+    %section
+      = form_tag admin_users_path, method: :get, class: "simple_form", id: "user_search_form" do |f|
+        = search_field_tag :search, params[:search], placeholder: t('.search')
+        #user_search_result_container
+
+- content_for :js do
+  / This hijacks the search form, and turns it into an ajax drop-down select
+  = javascript_tag do
+    $("#user_search_form").bind("keyup", function(){              |
+      if($("#search").val() != ''){ $(this).submit(); }           |
+      else { $("#user_search_result_container").html(""); }       |
+    });                                                           |
+    $("#user_search_form").bind('submit', function(event){        |
+      event.preventDefault();                                     |
+      $.ajax({                                                    |
+        url: $(this).attr("action") + "?" + $(this).serialize(),  |
+        dataType: "json",                                         |
+        success: function(users){                                 |
+          var ul = $('<ul></ul>');                                |
+          ul.addClass('autocomplete_dropdown');                   |
+          $(users).each(function(i, user){                        |
+            console.dir(user);                                    |
+            var li = $('<li></li>');                              |
+            li.attr("id", user._id);                              |
+            li.addClass('autocomplete_item');                     |
+            li.html('<a href="#{admin_users_path}/' + user._id + '/edit">' + user.info.name + '</a>'); |
+            ul.append(li);                                        |
+          });                                                     |
+          $("#user_search_result_container").html(ul);            |
+        }                                                         |
+      });                                                         |
+    });                                                           |

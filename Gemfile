@@ -23,6 +23,7 @@ gem 'rails-boilerplate', github: "khelben/rails-boilerplate"
 gem 'haml-rails'
 gem 'simple-navigation'
 gem 'simple_form'
+gem 'rabl'
 
 # Assets related
 group :assets do

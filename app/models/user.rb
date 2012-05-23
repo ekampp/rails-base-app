@@ -14,6 +14,9 @@ class User
   index :provider
   index :role
 
+  # Relations
+  has_many :accesses, class_name: "Access"
+
   # Validations
   # validates :uid, presence: true, uniqueness: true
   validates :provider, presence: true
@@ -31,6 +34,17 @@ class User
   #
   def enabled?
     !banned
+  end
+
+  #
+  # Searches through the users
+  # If there is no `search` parameter present, this will return all the user records
+  #
+  # TODO: Find a better way to scope
+  #
+  def self.search search = nil
+    any_of({ provider: /#{search}/i }, { "info.name" => /#{search}/i },
+           { "info.email" => /#{search}/i })
   end
 
 end

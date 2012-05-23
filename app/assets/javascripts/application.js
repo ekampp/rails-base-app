@@ -16,3 +16,14 @@
 //= require iphone-style-checkboxes
 //= require iphone-style-checkboxes-config
 //= require_tree .
+
+/*
+ * Observes the info-box data-remove-box elements, to remove the parenting box.
+ *
+ */
+$(".info-remove").each(function(i, obj) {
+  var obj = $(obj);
+  obj.click(function(){
+    obj.parent(".info-box").remove();
+  });
+});

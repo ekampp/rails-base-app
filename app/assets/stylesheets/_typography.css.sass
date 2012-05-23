@@ -46,8 +46,11 @@
   font-size: 70px
 
 /* @ Standard html typography elements @ */
-h1
+h1.primary
   @include large-font-size
+h1.secondary
+  @include medium-font-size
+
 
 /* @ Text shadow @ */
 @mixin inset-text-shadow($color: $alt_font_color)

@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if @user.present? and @user.enabled? and @user.save
       logger.debug { "SESSION CONTROLLER: Logging in user #{@user.id}" }
       session[:user_id] = @user.id
+      log_access!
       redirect_to get_stored_location
     else
       render :new

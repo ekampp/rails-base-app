@@ -162,6 +162,9 @@ GEM
     polyglot (0.3.3)
     quiet_assets (1.0.1)
       railties (~> 3.1)
+    rabl (0.6.12)
+      activesupport (>= 2.3.14)
+      multi_json (~> 1.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -265,6 +268,7 @@ DEPENDENCIES
   omniauth-google
   omniauth-twitter
   quiet_assets
+  rabl
   rails (~> 3.2.3)
   rails-boilerplate!
   responders

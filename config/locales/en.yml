@@ -8,12 +8,16 @@ en:
   application:
     title: "Rails base app"
     menu:
+      admin: "("
+      admin_title: "Administrate the site"
       account: "g"
       account_title: "My account"
       logout: "✖"
       logout_title: "Logout"
       login: "*"
       login_title: "Login"
+    info_box:
+      remove_box: "Remove this?"
 
   sessions:
     login_messages:
@@ -22,8 +26,14 @@ en:
 
   users:
     admin_form:
-      banned_user_hint: "Banning the user will disable their login."
-      provider: "Last login was through %{provider}"
+      banned_user_hint: "Banning the user will log him out and disable his login."
+      last_login: "Last logged in through %{provider} on %{date}"
     edit:
       cancel: "Cancel"
       edit_your_profile: "Edit your profile"
+
+  admin:
+    users:
+      index:
+        users_list: "Administrate users"
+        search: "Search users"

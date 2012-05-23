@@ -1,6 +1,8 @@
+/ Displays the user's last login
+- content_for :flashes do
+  %p= info_box t('.last_login', provider: form.object.provider,                               |
+      date: form.object.accesses.chronological.last.created_at.to_formatted_s(:long_ordinal)) |
+
 / Admin related information about the user
-
-%p= info_box t('.provider', provider: form.object.provider)
-
 = form.input :role, collection: User.possible_roles, include_blank: false
 = form.input :banned, as: :boolean, hint: t('.banned_user_hint')

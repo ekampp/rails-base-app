@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   #
   def current_user
     @current_user ||= User.find(session[:user_id]) rescue nil if session[:user_id].present?
-    @current_user.enabled? ? @current_user : nil
+    @current_user = nil unless @current_user.present? and @current_user.enabled?
+    @current_user
   end
   helper_method :current_user
 
@@ -58,8 +59,17 @@ class ApplicationController < ActionController::Base
   #   * before_filter :require_login
   #
   def require_login
-    access_denied unless logged_in?
+    access_denied and return unless logged_in?
   end
+
+  #
+  # Requites the user to have the given `role` to access
+  #
+  def require_role role
+    role = role.to_s unless role.is_a?(String)
+    access_denied and return unless logged_in? and current_user.role == role
+  end
+
 
   #
   # Redirects the user to the login page, and displays a message explaining the
@@ -68,5 +78,15 @@ class ApplicationController < ActionController::Base
   def access_denied msg = "login_required"
     store_location
     redirect_to login_path(msg: msg) and return
+  end
+
+  #
+  # Logs the users access to this url
+  #
+  def log_access!
+    current_user.accesses.create({
+      ip: request.ip,
+      url: request.url
+    })
   end
 end

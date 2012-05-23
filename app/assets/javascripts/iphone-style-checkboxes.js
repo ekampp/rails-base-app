@@ -1,3 +1,10 @@
+/*
+ * Src: http://awardwinningfjords.com/2009/06/16/iphone-style-checkboxes.html
+ *
+ * See iphone-style-checkboxes-config.js.erb for configuration options.
+ *
+ */
+
 (function() {
   var iOSCheckbox;
   var __slice = Array.prototype.slice;

@@ -1,5 +1,5 @@
 class UsersController < InheritedResources::Base
-  before_filter :require_login, :except => [ :new, :create ]
+  before_filter :require_login
   load_and_authorize_resource
 
   #
@@ -32,10 +32,6 @@ protected
 
   def resource
     @user = current_user
-    if params[:id].present? and can? :manage, User
-      @user = User.find(params[:id]) rescue current_user
-    end
-    @user
   end
 
 end

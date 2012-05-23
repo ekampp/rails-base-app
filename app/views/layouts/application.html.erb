@@ -54,8 +54,9 @@
     </div>
     <div class="row">
       <div class="twelvecol">
-        <%= info_box flash[:notice], :notice if flash[:notice].present? %>
-        <%= info_box flash[:alert], :alert if flash[:alert].present? %>
+        <%= info_box flash[:notice], allow_remove: true, type: :notice if flash[:notice].present? %>
+        <%= info_box flash[:alert], allow_remove: true, type: :alert if flash[:alert].present? %>
+        <%= yield :flashes if content_for? :flashes %>
       </div>
     </div>
   </header>
