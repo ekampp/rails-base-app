@@ -6,16 +6,6 @@ class Admin::UsersController < InheritedResources::Base
   end
   load_and_authorize_resource
 
-  # Respond to js
-  respond_to :json, only: [ :index ]
-
-  def index
-    index! do |format|
-      format.json { render json: @users }
-      format.html { render :index }
-    end
-  end
-
 protected
 
   def resource

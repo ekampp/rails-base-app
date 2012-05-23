@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require iphone-style-checkboxes
 //= require iphone-style-checkboxes-config
+//= require quickpager.jquery
 //= require_tree .
 
 /*
@@ -26,4 +27,12 @@ $(".info-remove").each(function(i, obj) {
   obj.click(function(){
     obj.parent(".info-box").remove();
   });
+});
+
+/*
+ * Paginates all .paginate objects
+ *
+ */
+$(".paginate").quickPager({
+  pagerLocation: 'after'
 });
