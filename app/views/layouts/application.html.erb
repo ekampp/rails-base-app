@@ -11,7 +11,7 @@
        More info: h5bp.com/i/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Rails base app</title>
+  <title><%= t('application.title') %></title>
   <meta name="description" content="">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -41,23 +41,21 @@
   <!-- Add your site or application content here -->
   <header class="container" id="main-header">
     <div class="row">
-      <div class="twelvecol">
+      <div class="eightcol">
         <hgroup>
           <h1>
             <a id="app-title" class="inset-text-shadow" href="<%= root_path %>">Rails base app</a>
           </h1>
         </hgroup>
       </div>
-    </div>
-    <div class="row">
-      <nav class="twelvecol" id="main-navigation-container">
+      <nav class="fourcol last" id="main-navigation-container">
         <%= render_navigation level: 1 %>
       </nav>
     </div>
     <div class="row">
       <div class="twelvecol">
-        <%= notice_box flash[:notice] if flash[:notice].present? %>
-        <%= alert_box flash[:alert] if flash[:alert].present? %>
+        <%= info_box flash[:notice], :notice if flash[:notice].present? %>
+        <%= info_box flash[:alert], :alert if flash[:alert].present? %>
       </div>
     </div>
   </header>

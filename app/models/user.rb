@@ -26,4 +26,11 @@ class User
     [ "user", "admin" ]
   end
 
+  #
+  # Checks if the user is enabled, i.e. not banned etc.
+  #
+  def enabled?
+    !banned
+  end
+
 end

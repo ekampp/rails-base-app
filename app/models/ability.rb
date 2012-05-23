@@ -10,7 +10,7 @@ class Ability
     end
 
     # Players
-    if user.role == "player"
+    if user.role == "user"
       can :read, :all
 
       # Setting user model permissions

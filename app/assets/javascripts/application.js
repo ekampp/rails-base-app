@@ -13,4 +13,6 @@
 //= require plugins
 //= require jquery
 //= require jquery_ujs
+//= require iphone-style-checkboxes
+//= require iphone-style-checkboxes-config
 //= require_tree .

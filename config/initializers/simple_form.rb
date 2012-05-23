@@ -40,16 +40,16 @@ SimpleForm.setup do |config|
     # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
-    ## Inputs
-    b.wrapper tag: :div, class: 'label_section threecol' do |component|
-      component.use :label
-      component.use :hint,  wrap_with: { tag: :span, class: :hint }
+    # Inputs
+    b.wrapper tag: :div, class: 'input_section twelwecol' do |w|
+      w.use :label
+      w.wrapper tag: :div, class: "input_wrapper" do |iw|
+        iw.use :input
+        iw.use :hint,  wrap_with: { tag: :div, class: :hint }
+        iw.use :error, wrap_with: { tag: :div, class: :error }
+      end
     end
 
-    b.wrapper tag: :div, class: 'input_section ninecol last' do |component|
-      component.use :input
-      component.use :error, wrap_with: { tag: :span, class: :error }
-    end
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -113,7 +113,7 @@ SimpleForm.setup do |config|
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.
-  config.browser_validations = false
+  config.browser_validations = true
 
   # Collection of methods to detect if a file type was given.
   # config.file_methods = [ :mounted_as, :file?, :public_filename ]

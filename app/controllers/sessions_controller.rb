@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_or_initialize_by auth_hash
     logger.debug { "SESSION CONTROLLER: Identified user #{@user.inspect} from auth hash." }
-    if @user.present? and @user.save
+    if @user.present? and @user.enabled? and @user.save
       logger.debug { "SESSION CONTROLLER: Logging in user #{@user.id}" }
       session[:user_id] = @user.id
       redirect_to get_stored_location

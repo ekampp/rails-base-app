@@ -50,8 +50,8 @@ h1
   @include large-font-size
 
 /* @ Text shadow @ */
-@mixin inset-text-shadow
-  text-shadow: 0px -1px darken($alt_font_color, 20), 0px 1px lighten($alt_font_color, 70)
+@mixin inset-text-shadow($color: $alt_font_color)
+  text-shadow: 0px -1px darken($color, 20), 0px 1px lighten($color, 50)
 html.textshadow
   // Inset text into background
   .inset-text-shadow

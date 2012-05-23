@@ -2,7 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  no: "No"
+  yes: "Yes"
+
   application:
+    title: "Rails base app"
     menu:
       account: "g"
       account_title: "My account"
@@ -22,3 +26,4 @@ en:
       provider: "Last login was through %{provider}"
     edit:
       cancel: "Cancel"
+      edit_your_profile: "Edit your profile"

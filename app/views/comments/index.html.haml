@@ -1,0 +1,7 @@
+- @model.comments_list.each do |comment|
+  %div[comment]
+    %p
+      - if comment.deleted?
+        = t('.comment_deleted')
+      - else
+        = comment.text

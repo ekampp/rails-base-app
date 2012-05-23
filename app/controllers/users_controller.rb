@@ -10,7 +10,7 @@ class UsersController < InheritedResources::Base
   def update
     update! do |format|
       format.html do
-        respond_with resource, location: edit_user_path(resource)
+        respond_with resource, location: my_account_path
       end
     end
   end

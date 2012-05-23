@@ -1,0 +1,9 @@
+<p>Leave a comment</p>
+<%= simple_form_for [model,comment] do |f| %>
+  <%= f.hidden_field :parent, :value => comment.parent if comment.parent %>
+  <%= f.input :author %>
+  <%= f.input :text %>
+  <div class="buttons">
+    <%= f.button :submit %>
+  </div>
+<% end %>

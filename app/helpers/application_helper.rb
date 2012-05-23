@@ -1,49 +1,29 @@
-#
-# TODO: Refactor the `info_`, `alert_` og `notice_` methods to some kind of
-#       single method. <emil@kampp.me>
-#
 module ApplicationHelper
 
   #
-  # Constructs an info box
-  # This takes a single `string` argument.
+  # This will construct an info box, of the given `type` (defaults to info)
+  # and with the given `text`.
   #
-  # Examples:
-  #   * info_box 'hello'
+  # Additionally you can supply a third argument, which indicates the `letter`
+  # for the icon of the box. This will overwrite the icon determined by the
+  # `type` of the box.
   #
-  def info_box text
-    content_tag :span, class: "info" do
-      content_tag(:span, "2", class: "info-icon") +
+  #
+  def info_box text, type = :info, letter = nil
+    unless letter.is_a?(String)
+      case type.to_sym
+      when :alert
+        letter = "!"
+      when :notice
+        letter = "J"
+      else
+        letter = "2"
+      end
+    end
+
+    content_tag :span, class: "info-box" do
+      content_tag(:span, letter, class: "info-icon #{type.to_s}") +
       content_tag(:span, text, class: "info-text")
     end
   end
-
-  #
-  # Constructs an alert box
-  # This takes a single `string` argument.
-  #
-  # Examples:
-  #   * alert_box 'hello'
-  #
-  def alert_box text
-    content_tag :span, class: "alert" do
-      content_tag(:span, "!", class: "alert-icon") +
-      content_tag(:span, text, class: "alert-text")
-    end
-  end
-
-  #
-  # Constructs an notice box.
-  # This takes a single `string` argument.
-  #
-  # Examples:
-  #   * notice_box 'hello'
-  #
-  def notice_box text
-    content_tag :span, class: "notice" do
-      content_tag(:span, "J", class: "notice-icon") +
-      content_tag(:span, text, class: "notice-text")
-    end
-  end
-
 end

@@ -62,87 +62,55 @@ a.login_strategi
   text-align: right
 
 .button
-  @include button($alt_font_color)
+  @include button($bg_color)
   @include normal-font-size
   text-transform: lowercase
+  color: $alt_font_color
 
 a.button
   text-decoration: none
-  color: #fff
+  color: $alt_font_color
 
 // Commit button
 .button.commit
   @include button(green)
   @include normal-font-size
   text-transform: lowercase
+  color: #fff
+
+/* @ boxes @ */
+@mixin outset-box
+  display: block
+  padding: 10px 20px
+  margin: 20px 0px
+  border: solid 1px lighten($alt_font_color, 10)
+  @include box-shadow(1px 1px 2px lighten($bg_color, 30))
+  @include linear-gradient(lighten($bg_color, 30), $bg_color)
+  @include border-radius(5px)
+  @include box-sizing(border-box)
+  text-shadow: 0px 1px 2px #fff
+
+@mixin inset-box
+  display: block
+  margin: 0px 0px 20px 0px
+  padding: 10px 20px
+  border: solid 1px lighten($alt_font_color, 10)
+  @include box-shadow(inset 2px 2px 2px darken($bg_color, 10))
+  @include linear-gradient($bg_color, lighten($bg_color, 10))
+  @include border-radius(5px)
+  @include box-sizing(border-box)
 
 /* Info, alerts and notices */
-.info
-  color: #fff
-  text-shadow: 2px 2px darken($bg_color, 50)
-  @include stensil-font
-  display: block
-  padding: 10px
-  margin: 20px 3px
-  @include box-shadow(inset 1px 1px 5px 1px darken($bg_color, 40), inset -1px -1px 5px 1px darken($bg_color, 40), 0px 0px 7px 1px darken($bg_color, 50))
-  background: $bg_color image-url("bg-pattern-dark.png") repeat
-  border: solid 1px darken($bg_color, 20)
-  @include border-radius(12px)
-  letter-spacing: 2px
-
-  .info-icon
-    @include inline-block
-    @include pictogram-font
-    font-size: 28px
-    margin-right: 16px
-    margin-left: 10px
-
-  .info-text
-    @include inline-block
-
-.alert
-  color: #fff
-  text-shadow: 2px 2px darken($bg_color, 50)
-  @include stensil-font
-  display: block
-  padding: 10px
-  margin: 20px 3px
-  @include box-shadow(inset 1px 1px 5px 1px darken($bg_color, 40), inset -1px -1px 5px 1px darken($bg_color, 40), 0px 0px 7px 1px darken($bg_color, 50))
-  background: $bg_color image-url("bg-pattern-dark.png") repeat
-  border: solid 1px darken($bg_color, 20)
-  @include border-radius(12px)
-  letter-spacing: 2px
-
-  .alert-icon
-    @include inline-block
-    @include pictogram-font
-    font-size: 28px
-    margin-right: 16px
-    margin-left: 10px
-
-  .alert-text
-    @include inline-block
-
-
-.notice
-  color: #fff
-  text-shadow: 2px 2px darken($bg_color, 50)
-  @include stensil-font
-  display: block
-  padding: 10px
-  margin: 20px 3px
-  @include box-shadow(inset 1px 1px 5px 1px darken($bg_color, 40), inset -1px -1px 5px 1px darken($bg_color, 40), 0px 0px 7px 1px darken($bg_color, 50))
-  background: $bg_color image-url("bg-pattern-dark.png") repeat
-  border: solid 1px darken($bg_color, 20)
-  @include border-radius(12px)
-  letter-spacing: 2px
-
-  .notice-icon
-    @include inline-block
-    @include pictogram-font
-    font-size: 28px
-    margin-right: 16px
-    margin-left: 10px
-
-  .notice-text
-    @include inline-block
+.info-box
+  @include outset-box
+  padding: 0px
+.info-icon
+  @include inline-block
+  @include pictogram-font
+  font-size: 28px
+  margin-right: 10px
+  margin-left: 10px
+  border: none
+  @include box-shadow(none)
+.info-text
+  @include inline-block

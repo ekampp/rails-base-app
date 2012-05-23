@@ -18,8 +18,11 @@ class ApplicationController < ActionController::Base
   # Returns the currently logged in user based on a session stored on his
   # computer.
   #
+  # This will check, if the user is enabled (e.g. not banned) before returning.
+  #
   def current_user
     @current_user ||= User.find(session[:user_id]) rescue nil if session[:user_id].present?
+    @current_user.enabled? ? @current_user : nil
   end
   helper_method :current_user
 
