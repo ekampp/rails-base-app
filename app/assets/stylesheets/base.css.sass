@@ -1,0 +1,38 @@
+@mixin inset-text
+  text-shadow: 0 -1px #c7c7c7
+
+body
+  background-color: #fff
+  padding-top: 120px
+  color: #333
+  font-size: 16px
+  line-height: 22px
+
+a
+  color: #333
+  cursor: pointer
+  font-weight: bold
+  &:hover
+    text-decoration: none
+    color: #792d20
+
+.lead .label
+  font-size: 0.8em
+
+.text-align-center
+  text-align: center
+
+.fixed
+  position: fixed
+
+h1, h2, .icon
+  @include inset-text
+
+#wrapper
+  width: 1024px
+  margin: auto
+
+#contact-options-list
+  font-size: 6em
+  li
+    line-height: 1em
