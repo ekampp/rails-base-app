@@ -103,16 +103,16 @@ namespace :version do
     release = case release.to_i; when 4; "major"; when 3; "minor"; when 2; "revision"; else "build"; end
     system "rake bump:#{release}"
     version = File.read("VERSION")
+
     description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
-    description = description[0..71] + "..." if description.length > 34
-    system "git tag -a v#{version} -m '#{description}'"
-    puts ""
-    puts "+--------------------------------------------------------------------------+"
-    puts "| Releasing v#{version}: #{description.ljust(40, " ")} |"
-    puts "+--------------------------------------------------------------------------+"
-    puts "\n"
+    headline = "| Releasing v#{version}: "
+    divider = "+--------------------------------------------------------------------------+"
+    description = description[0..(divider.length - headline.length) - 3] + "..." if description.length > (divider.length - headline.length)
+    puts "\n" + divider + "\n" + headline + "\n" + divider + "\n\n"
+
     system "git add --all"
     system "git commit -am 'Releasing v#{version}: #{description}'"
+    system "git tag -a v#{version} -m '#{description}'"
     system "git push --tags"
     system "git push"
   end
