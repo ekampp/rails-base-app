@@ -108,7 +108,7 @@ namespace :version do
     system "git tag -a v#{version} -m '#{description}'"
     puts ""
     puts "+--------------------------------------------------------------------------+"
-    puts "| Releasing v#{version}: #{description.ljust(50, " ")} |"
+    puts "| Releasing v#{version}: #{description.ljust(40, " ")} |"
     puts "+--------------------------------------------------------------------------+"
     puts "\n"
     system "git add --all"
