@@ -280,6 +280,7 @@ GEM
     sass (3.2.1)
     sexp_processor (3.2.0)
     simple_form (1.4.1)
+    spinning_cursor (0.1.2)
     sprockets (2.6.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -332,6 +333,7 @@ DEPENDENCIES
   rubygems-bundler
   sass-rails!
   simple_form
+  spinning_cursor
   sprockets-rails!
   uglifier-rails!
   version_bumper

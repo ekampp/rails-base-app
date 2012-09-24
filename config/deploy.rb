@@ -34,6 +34,18 @@ after "deploy:restart", "deploy:cleanup"
 # Install requirements on the server before setup
 before "deploy:setup", "requirements:install"
 
+# Output spinners
+before "deploy:update" do
+  SpinningCursor.start do
+    banner "Updating code"
+    type :dots
+    message "Done"
+  end
+end
+after "deploy:update" do
+  SpinningCursor.stop
+end
+
 # Foreman
 after "deploy:update", "foreman:setup"
 namespace :foreman do
@@ -119,9 +131,13 @@ namespace :version do
 end
 before "deploy", "version:tag"
 
-
 desc "Install server-side requirements"
 task :install do
+  SpinningCursor.start do
+    banner "Installing requirements on the server"
+    type :dots
+    message "Done"
+  end
   run "echo 'export LANGUAGE=en_US.UTF-8' >> ~/.bashrc"
   run "echo 'export LANG=en_US.UTF-8' >> ~/.bashrc"
   run "echo 'export LC_ALL=en_US.UTF-8' >> ~/.bashrc"
@@ -179,6 +195,8 @@ task :install do
   system "gem install bundler"
   system "bundle"
   system "cap deploy:setup"
+
+  SpinningCursor.stop
 
   puts ""
   puts "Run 'dpkg-reconfigure tzdata' on remote server to change the timezone. It is currently UTC+0000"

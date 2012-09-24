@@ -61,4 +61,5 @@ end
 group :development, :test do
   gem 'brakeman' # Security testing
   gem 'capistrano' # deploy
+  gem 'spinning_cursor'
 end
