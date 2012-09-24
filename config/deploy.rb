@@ -1,3 +1,5 @@
+require 'spinning_cursor' # you'll definitely need this bit
+
 set :default_environment, { 'PATH' => "/usr/local/rbenv/bin:/usr/local/rbenv/shims:$PATH" }
 require "bundler/capistrano"
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
