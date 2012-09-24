@@ -112,7 +112,7 @@ namespace :version do
 
     system "git add --all"
     system "git commit -am 'Releasing v#{version}: #{description}' --quiet"
-    system "git tag -a v#{version} -m '#{description}' --quiet"
+    system "git tag -a v#{version} -m '#{description}'"
     system "git push --tags --quiet"
     system "git push --quiet"
   end
