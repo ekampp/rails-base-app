@@ -112,6 +112,7 @@ namespace :version do
     puts "\n"
     system "git commit -am 'Releasing v#{version}: #{description}'"
     system "git push --tags"
+    system "git push"
   end
 end
 before "deploy", "version:tag"

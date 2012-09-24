@@ -70,5 +70,11 @@ module EmilKampp
       g.helper false
       g.template_engine :haml
     end
+
+    # Maintenance
+    config.middleware.use 'Rack::Maintenance',
+      :file => Rails.root.join('public', 'maintenance.html'),
+      :env  => 'MAINTENANCE'
+
   end
 end

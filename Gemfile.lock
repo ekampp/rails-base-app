@@ -258,6 +258,8 @@ GEM
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-maintenance (0.3.0)
+      rack (>= 1.0)
     rack-test (0.6.1)
       rack (>= 1.0)
     rake (0.9.2.2)
@@ -321,6 +323,7 @@ DEPENDENCIES
   paranoia!
   puma
   rabl
+  rack-maintenance
   rails!
   rails-backbone!
   redcarpet
