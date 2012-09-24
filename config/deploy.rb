@@ -105,9 +105,11 @@ namespace :version do
     version = File.read("VERSION")
     description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
     system "git tag -a v#{version} -m '#{description}'"
+    puts ""
     puts "+--------------------------------------------------------------------------+"
-    puts "| Releasing v#{version}: #{description}".ljust(74, " |")
+    puts "| Releasing v#{version}: #{description}".ljust(74, " ") + " |"
     puts "+--------------------------------------------------------------------------+"
+    puts "\n"
     system "git commit -am 'Releasing v#{version}: #{description}'"
     system "git push --tags"
   end
