@@ -110,6 +110,7 @@ namespace :version do
     puts "| Releasing v#{version}: #{description}".ljust(74, " ") + " |"
     puts "+--------------------------------------------------------------------------+"
     puts "\n"
+    system "git add --all"
     system "git commit -am 'Releasing v#{version}: #{description}'"
     system "git push --tags"
     system "git push"
