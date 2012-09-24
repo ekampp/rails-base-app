@@ -27,6 +27,7 @@ gem 'simple_form'
 gem 'haml-rails'
 gem 'rails-backbone', github: "ekampp/backbone-rails"
 gem 'jquery-rails'
+gem 'fancybox-rails', github: "sverigemeny/fancybox-rails"
 
 # Renderers
 gem 'redcarpet'

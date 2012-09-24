@@ -5,7 +5,7 @@
     %header
       %h1.slab-this
         %span.slabtext Shh...
-        %span.slabtext Creative minds at work.
+        %span.slabtext Sofware at work.
       %p.lead
         I believe that information should be shared and easily accessible.
         %br
@@ -15,15 +15,15 @@
       %h2 Do you feel strongly about something?
       %p.lead Want that communicated &amp; shared? Please feel free to contact me.
 
-      - if $rollout.active?(:developer, current_user)
-        %p Hello
-        / %p.btn-group.text-align-center
-        /   %a.btn.btn-large
-        /     %i.icon.icon-phone
-        /     Call
-        /   %a.btn.btn-large
-        /     %i.icon.icon-pencil
-        /     Mail
+      %p.btn-group.text-align-center
+        %a{ class: "btn btn-large direct-contact-option", |
+                   "data-contact-information" => "+45 42427176" } |
+          %i.icon.icon-phone
+          Call
+        %a{ class: "btn btn-large direct-contact-option", |
+                   "data-contact-information" => "emil@kampp.me" } |
+          %i.icon.icon-pencil
+          Mail
 
       / %h2 Some of my recent work
       / %p.lead I would like to present some of my recent work. Please feel free to contact me about any of it.

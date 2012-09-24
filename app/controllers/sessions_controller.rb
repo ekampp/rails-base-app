@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     raise NoUserFound unless user.present? and user.is_a?(User)
+
+    user.assign_rollout_permissions
+
     session[:id_token] = user.id_token
     cookies[:_logged_in] = Time.zone.now
     @current_user = user

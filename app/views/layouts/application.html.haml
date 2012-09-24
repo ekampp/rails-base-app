@@ -12,6 +12,9 @@
 
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
 
+    / Removes the pesky facebook #_=_ from the url
+    = javascript_tag "if (window.location.hash == '#_=_') window.location.hash = '';"
+
   %body
     #wrapper
       =# render 'layouts/navbar'

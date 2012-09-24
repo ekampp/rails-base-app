@@ -8,9 +8,9 @@ class User
   field :name, type: String
   field :oauth_token, type: String
   field :oauth_expires_at, type: Time
-  field :id_token, type: String
-  field :locale, type: String
-  field :admin, type: Boolean
+  field :id_token, type: String, default: rand(36**8).to_s(36)
+  field :locale, type: String, default: "da"
+  field :admin, type: Boolean, default: false
 
   # Fetch the user based on the omniauth hash
   def self.from_omniauth(auth)
@@ -23,5 +23,13 @@ class User
       user.oauth_expires_at = Time.at(auth.credentials.expires_at) if auth.credentials.expires_at.present?
       user.save!
     end
+  end
+
+  # Assigns rollout permissions and groups to the user
+  #
+  # NOTE: `$rollout` is defined in config/initializers/rollout.rb
+  #
+  def assign_rollout_permissions
+    $rollout.activate_user(:direct_contact_options, self) if admin?
   end
 end

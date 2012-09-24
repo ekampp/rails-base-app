@@ -6,10 +6,17 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require fancybox
 #= require bootstrap
 #= require_tree .
 
-# Slabtext all slab-this classes
+# Slabtext all `.slab-this` classes. This is delayed 100 miliseconds to allow
+# the dom to completely render.
 setTimeout \
   ->$(".slab-this").slabText({ fontRatio: 1.2 }),
   100
+
+$("a.direct-contact-option").each (i, link) ->
+  html = $("<h1></h1>").html($(link).data("contact-information")).addClass("huge")
+  $(link).fancybox
+    content: html
