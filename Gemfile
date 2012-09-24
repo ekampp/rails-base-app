@@ -19,6 +19,9 @@ gem 'omniauth-facebook'
 # Security
 # gem 'strong_parameters'
 
+# Feature flipper
+gem 'rollout'
+
 # Front-end
 gem 'simple_form'
 gem 'haml-rails'
@@ -31,7 +34,8 @@ gem 'markdown-rails'
 
 # Database
 gem 'bson_ext'
-gem 'mongoid', path: "/Users/emil/code/mongoid"
+gem 'mongoid', github: "ekampp/mongoid"
+gem 'redis'
 
 # TODO: Gems that might be useful
 # gem 'andand' # http://andand.rubyforge.org/

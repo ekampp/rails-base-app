@@ -59,10 +59,12 @@ protected
   def current_user
     @current_user ||= User.where(id_token: session[:id_token]).first
   end
+  helper_method :current_user
 
   def logged_in?
     !!current_user
   end
+  helper_method :logged_in?
 
   def get?
     request.get?

@@ -123,6 +123,7 @@ task :install do
   run "apt-get install nginx -y"
   run "apt-get install htop -y"
   run "apt-get install mongodb -y"
+  run "apt-get install redis-server -y"
   run "apt-get install libpq-dev -y"
   run "apt-get install nodejs -y"
   run "service varnish stop"

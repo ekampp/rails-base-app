@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     session[:id_token] = user.id_token
     cookies[:_logged_in] = Time.zone.now
     @current_user = user
-    redirect_to admin_path
+    redirect_to root_path
   end
 
   def destroy
@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
   end
 
   def new
-    params[:redirect_uri] ||= admin_path
+    params[:redirect_uri] ||= root_path
   end
 end

@@ -9,19 +9,21 @@
       %p.lead
         I believe that information should be shared and easily accessible.
         %br
-        I'm currently workinng hard to do just that.
+        I'm currently working hard to do just that.
 
     %section
       %h2 Do you feel strongly about something?
-      %p.lead Want that communicated and shared? Please feel free to contact me:
+      %p.lead Want that communicated &amp; shared? Please feel free to contact me.
 
-      / %p.btn-group.text-align-center
-      /   %a.btn.btn-large
-      /     %i.icon.icon-phone
-      /     Call
-      /   %a.btn.btn-large
-      /     %i.icon.icon-pencil
-      /     Mail
+      - if $rollout.active?(:developer, current_user)
+        %p Hello
+        / %p.btn-group.text-align-center
+        /   %a.btn.btn-large
+        /     %i.icon.icon-phone
+        /     Call
+        /   %a.btn.btn-large
+        /     %i.icon.icon-pencil
+        /     Mail
 
       / %h2 Some of my recent work
       / %p.lead I would like to present some of my recent work. Please feel free to contact me about any of it.
