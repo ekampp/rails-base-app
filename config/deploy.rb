@@ -44,9 +44,6 @@ before "deploy:update_code" do
     message "Code updated"
   end
 end
-after "deploy:update_code" do
-  SpinningCursor.stop
-end
 before "bundle:install" do
   SpinningCursor.start do
     banner "Bundling gems"
@@ -54,7 +51,7 @@ before "bundle:install" do
     message "Gems installed"
   end
 end
-after "bundle:install" do
+after "deploy" do
   SpinningCursor.stop
 end
 
