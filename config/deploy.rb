@@ -58,6 +58,13 @@ before "deploy:restart" do
     message "Server(s) restarted"
   end
 end
+before "assets:precompile" do
+  SpinningCursor.start do
+    banner "Compiling assets"
+    type :dots
+    message "Assets compiled"
+  end
+end
 after "deploy" do
   SpinningCursor.stop
 end
@@ -102,9 +109,13 @@ namespace :logs do
 end
 
 # Precompile assets
-after 'deploy:update_code' do
-  run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
+namespace :asset do
+  desc "Precompile"
+  task :precompile do
+    run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
+  end
 end
+after 'deploy:update_code', 'assets:precompile'
 
 # Some varnish utilities
 namespace :varnish do
