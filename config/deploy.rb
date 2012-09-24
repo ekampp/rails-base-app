@@ -109,7 +109,7 @@ namespace :logs do
 end
 
 # Precompile assets
-namespace :asset do
+namespace :assets do
   desc "Precompile"
   task :precompile do
     run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
