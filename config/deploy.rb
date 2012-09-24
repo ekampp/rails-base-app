@@ -107,7 +107,7 @@ namespace :version do
     description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
     headline = "| Releasing v#{version}: "
     divider = "+--------------------------------------------------------------------------+"
-    description = description[0..(divider.length - headline.length) - 3] + "..." if description.length > (divider.length - headline.length - 2)
+    description = description[0..(divider.length - headline.length) - 5] + "..." if description.length > (divider.length - headline.length - 2)
     puts "\n" + divider + "\n" + headline + description + " |\n" + divider + "\n\n"
 
     system "git add --all"
