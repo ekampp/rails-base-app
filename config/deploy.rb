@@ -39,7 +39,7 @@ before "deploy:setup", "requirements:install"
 # Output spinners
 before "deploy:update_code" do
   SpinningCursor.start do
-    banner "Updating code"
+    banner "Updating code on server"
     type :dots
     message "Code updated"
   end

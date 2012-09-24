@@ -135,3 +135,23 @@ sub vcl_hash {
 
   return(hash);
 }
+
+sub vcl_error {
+    set obj.http.Content-Type = "text/html; charset=utf-8";
+
+    synthetic {"
+        <?xml version="1.0" encoding="utf-8"?>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html>
+            <head>
+                <title>Emil Kampp</title>
+            </head>
+            <body>
+                <h1>Maintenance in progress..</h1>
+                <p>The site is undergoing some maintenance, we should be back online momentarily.</p>
+            </body>
+        </html>
+    "};
+    return(deliver);
+}
