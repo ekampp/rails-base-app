@@ -104,11 +104,11 @@ namespace :version do
     system "rake bump:#{release}"
     version = File.read("VERSION")
     description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
-    description = description[0..71] + "..." if description.length > 74
+    description = description[0..71] + "..." if description.length > 50
     system "git tag -a v#{version} -m '#{description}'"
     puts ""
     puts "+--------------------------------------------------------------------------+"
-    puts "| Releasing v#{version}: #{description}".ljust(74, " ") + " |"
+    puts "| Releasing v#{version}: #{description.ljust(50, " ")} |"
     puts "+--------------------------------------------------------------------------+"
     puts "\n"
     system "git add --all"
