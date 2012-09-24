@@ -104,7 +104,7 @@ namespace :version do
     system "rake bump:#{release}"
     version = File.read("VERSION")
     description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
-    description = description[0..71] + "..." if description.length > 40
+    description = description[0..71] + "..." if description.length > 34
     system "git tag -a v#{version} -m '#{description}'"
     puts ""
     puts "+--------------------------------------------------------------------------+"
