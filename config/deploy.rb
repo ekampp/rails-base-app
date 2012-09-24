@@ -149,6 +149,11 @@ namespace :version do
     description = description[0..(divider.length - headline.length) - 6] + "..." if description.length > (divider.length - headline.length - 2)
     puts "\n" + divider + "\n" + headline + description.ljust(divider.length-headline.length-2, " ") + " |\n" + divider + "\n"
 
+    SpinningCursor.start do
+      banner "Pushing changes to git"
+      type :dots
+      message "Code deposited"
+    end
     system "git add --all"
     system "git commit -am 'Releasing v#{version}: #{description}' --quiet"
     system "git tag -a v#{version} -m '#{description}'"
