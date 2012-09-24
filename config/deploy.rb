@@ -37,14 +37,34 @@ after "deploy:restart", "deploy:cleanup"
 before "deploy:setup", "requirements:install"
 
 # Output spinners
-before "deploy:update" do
+before "deploy:update_code" do
   SpinningCursor.start do
     banner "Updating code"
     type :dots
-    message "Done"
+    message "Code updated"
   end
 end
-after "deploy:update" do
+after "deploy:update_code" do
+  SpinningCursor.stop
+end
+before "bundle:install" do
+  SpinningCursor.start do
+    banner "Bundling gems"
+    type :dots
+    message "Gems installed"
+  end
+end
+after "bundle:install" do
+  SpinningCursor.stop
+end
+before "deploy:restart" do
+  SpinningCursor.start do
+    banner "Restarting server"
+    type :dots
+    message "Server restarted"
+  end
+end
+after "deploy:restart" do
   SpinningCursor.stop
 end
 
