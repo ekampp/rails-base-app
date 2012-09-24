@@ -3,7 +3,7 @@ require "bundler/capistrano"
 set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 
 # Don't display unwanted output
-logger.level = Logger::DEBUG
+logger.level = Logger::IMPORTANT
 
 set :user, "root"
 set :application, "emil_kampp"
