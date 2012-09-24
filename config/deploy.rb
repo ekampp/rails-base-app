@@ -136,7 +136,7 @@ namespace :version do
     headline = "| Releasing v#{version}: "
     divider = "+--------------------------------------------------------------------------+"
     description = description[0..(divider.length - headline.length) - 6] + "..." if description.length > (divider.length - headline.length - 2)
-    puts "\n" + divider + "\n" + headline + description.ljust(divider.length-headline.length-2, " ") + " |\n" + divider + "\n\n"
+    puts "\n" + divider + "\n" + headline + description.ljust(divider.length-headline.length-2, " ") + " |\n" + divider + "\n"
 
     system "git add --all"
     system "git commit -am 'Releasing v#{version}: #{description}' --quiet"
