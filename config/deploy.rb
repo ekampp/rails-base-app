@@ -111,10 +111,10 @@ namespace :version do
     puts "\n" + divider + "\n" + headline + description.ljust(divider.length-headline.length-2, " ") + " |\n" + divider + "\n\n"
 
     system "git add --all"
-    system "git commit -am 'Releasing v#{version}: #{description}'"
-    system "git tag -a v#{version} -m '#{description}'"
-    system "git push --tags"
-    system "git push"
+    system "git commit -am 'Releasing v#{version}: #{description}' --quiet"
+    system "git tag -a v#{version} -m '#{description}' --quiet"
+    system "git push --tags --quiet"
+    system "git push --quiet"
   end
 end
 before "deploy", "version:tag"
