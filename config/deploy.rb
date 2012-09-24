@@ -103,8 +103,12 @@ task :install do
   run "apt-get install redis-server -y"
   run "apt-get install libpq-dev -y"
   run "apt-get install nodejs -y"
+
+  # Stop auto-started services
   run "service varnish stop"
   run "service nginx stop"
+  run "service redis-server stop"
+
   run "sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config;"
   run "sed -i 's/AllowTcpForwarding yes/AllowTcpForwarding no/g' /etc/ssh/sshd_config;"
   run "sed -i 's/X11Forwarding yes/X11Forwarding no/g' /etc/ssh/sshd_config;"
