@@ -57,16 +57,6 @@ end
 after "bundle:install" do
   SpinningCursor.stop
 end
-before "deploy:restart" do
-  SpinningCursor.start do
-    banner "Restarting server"
-    type :dots
-    message "Server restarted"
-  end
-end
-after "deploy:restart" do
-  SpinningCursor.stop
-end
 
 # Foreman
 after "deploy:update", "foreman:setup"
