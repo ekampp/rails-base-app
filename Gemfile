@@ -38,6 +38,9 @@ gem 'bson_ext'
 gem 'mongoid', github: "ekampp/mongoid"
 gem 'redis'
 
+# Versioning
+gem 'version_bumper'
+
 # TODO: Gems that might be useful
 # gem 'andand' # http://andand.rubyforge.org/
 

@@ -95,6 +95,20 @@ namespace :redis do
 end
 before "deploy:restart", "redis:symlink"
 
+# Versioning
+namespace :version do
+  desc "Tag before release"
+  task :tag do
+    version = File.read("VERSION")
+    description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
+    system "git tag -a v#{version} -m '#{description}'"
+    puts "Tagging v#{version}: #{description}"
+    system "git push --tags"
+  end
+end
+before "deploy", "version:tag"
+
+
 desc "Install server-side requirements"
 task :install do
   run "echo 'export LANGUAGE=en_US.UTF-8' >> ~/.bashrc"
