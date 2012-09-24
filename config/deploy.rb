@@ -51,6 +51,13 @@ before "bundle:install" do
     message "Gems installed"
   end
 end
+before "deploy:restart" do
+  SpinningCursor.start do
+    banner "Restarting server(s)"
+    type :dots
+    message "Server(s) restarted"
+  end
+end
 after "deploy" do
   SpinningCursor.stop
 end
