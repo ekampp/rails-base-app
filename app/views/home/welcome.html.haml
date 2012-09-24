@@ -1,6 +1,8 @@
 .row
-  .span1.offset3= render 'layouts/contact_options'
+  .span1.offset3.fixed= render 'layouts/contact_options'
 
+  / Because the contacts options are fixed (see base.css.sass) we need to
+  / offset this as though the contact options weren't there.
   .span4.offset5
     %header
       %h1.slab-this
