@@ -93,7 +93,7 @@ namespace :redis do
     run "mkdir -p /www/emil_kampp/shared/db/redis; ln -nsf db/redis /www/emil_kampp/shared/db/redis"
   end
 end
-after "deploy:finalize_update", "redis:symlink"
+before "deploy:restart", "redis:symlink"
 
 desc "Install server-side requirements"
 task :install do
