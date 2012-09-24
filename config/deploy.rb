@@ -90,7 +90,7 @@ end
 namespace :redis do
   desc "Symlink to shared dir"
   task :symlink do
-    run "mkdir -p /www/emil_kampp/shared/db/redis; ln -nsf db/redis /www/emil_kampp/shared/db/redis"
+    run "mkdir -p /www/emil_kampp/shared/db/redis; cd #{release_path}/db; ln -nsf redis /www/emil_kampp/shared/db/redis"
   end
 end
 before "deploy:restart", "redis:symlink"
