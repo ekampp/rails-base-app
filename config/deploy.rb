@@ -99,10 +99,14 @@ before "deploy:restart", "redis:symlink"
 namespace :version do
   desc "Tag before release"
   task :tag do
+    release = Capistrano::CLI.ui.ask("Select a release type: 1) build 2) revision 3) minor 4) major (default 1): ")
+    release = case release.to_i; when 4; "major"; when 3; "minor"; when 2; "revision"; else "build"; end
+    system "rake bump:#{release}"
     version = File.read("VERSION")
     description = Capistrano::CLI.ui.ask("Describe the release (one line): ")
     system "git tag -a v#{version} -m '#{description}'"
-    puts "Tagging v#{version}: #{description}"
+    puts "Releasing v#{version}: #{description}"
+    system "git commit -am 'Releasing v#{version}: #{description}'"
     system "git push --tags"
   end
 end
