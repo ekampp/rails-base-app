@@ -138,7 +138,8 @@ before "deploy:restart", "redis:symlink"
 namespace :version do
   desc "Tag before release"
   task :tag do
-    release = Capistrano::CLI.ui.ask("Select a release type: 1) build 2) revision 3) minor 4) major (default 1): ")
+    puts "Available release types:\n  1) build (default)\n  2) revision\n  3) minor\n  4) major"
+    release = Capistrano::CLI.ui.ask("Select release type: ")
     release = case release.to_i; when 4; "major"; when 3; "minor"; when 2; "revision"; else "build"; end
     system "rake bump:#{release}"
     version = File.read("VERSION")
