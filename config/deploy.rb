@@ -39,7 +39,7 @@ after "deploy:update", "foreman:setup"
 namespace :foreman do
   desc "setup"
   task :setup, :roles => :app do
-    run "cd #{current_path} && PORT=#{fetch(:server_port)} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -c cache=1,web=4 -l #{release_path}/log"
+    run "cd #{current_path} && PORT=#{fetch(:server_port)} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -c cache=1,web=4,db=1,redis=1 -l #{release_path}/log"
   end
 end
 
@@ -76,29 +76,6 @@ end
 # Precompile assets
 after 'deploy:update_code' do
   run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
-end
-
-# Export variables on server
-namespace :server_variables do
-  desc "Setup variables file on server"
-  task :setup, roles: :app do
-    refresh
-
-    # Load the new export variables file into the environment
-    # Only do this, if it's not already loaded
-    logger.info "Setup server variables export.."
-    bashrc_content = capture("cat ~/.bashrc")
-    unless bashrc_content.include?("#{shared_path}/export_variables")
-      run "echo '. #{shared_path}/export_variables' > ~/.bashrc; . ~/.bashrc; $SHELL"
-    end
-  end
-
-  desc "Refresh the server variables file"
-  task :refresh, roles: :app do
-    logger.info "Refreshing export variables file.."
-    export_variables = ERB.new(File.read("config/deploy/export_variables.erb"))
-    put export_variables.result(binding), "#{shared_path}/export_variables"
-  end
 end
 
 # Some varnish utilities
