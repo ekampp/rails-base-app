@@ -113,8 +113,8 @@ end
 
 # Precompile assets
 after "deploy:finalize_update",
-      "deploy:assets:determine_modified_assets",
-      "deploy:assets:conditionally_precompile"
+      "deploy:determine_modified_assets",
+      "deploy:conditionally_precompile"
 namespace :assets do
   desc "Figure out modified assets."
   task :determine_modified_assets, :roles => :app, :except => { :no_release => true } do
