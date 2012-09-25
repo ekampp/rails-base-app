@@ -13,6 +13,9 @@ set :repository,  "git@github.com:ekampp/emil.kampp.git"
 set :deploy_to, "/www/#{fetch(:application)}"
 set :server_name, "emil.kampp.me"
 
+# Asset age (im minutes) without precompiling
+set :max_asset_age, 2
+
 role :web, "141.0.175.185"
 role :app, "141.0.175.185"
 role :db,  "141.0.175.185", :primary => true
@@ -58,7 +61,7 @@ before "deploy:restart" do
     message "Server(s) restarted"
   end
 end
-before "assets:precompile" do
+before "assets:conditionally_precompile" do
   SpinningCursor.start do
     banner "Compiling assets"
     type :dots
@@ -109,13 +112,26 @@ namespace :logs do
 end
 
 # Precompile assets
+after "deploy:finalize_update",
+      "deploy:assets:determine_modified_assets",
+      "deploy:assets:conditionally_precompile"
 namespace :assets do
-  desc "Precompile"
-  task :precompile do
-    run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
+  desc "Figure out modified assets."
+  task :determine_modified_assets, :roles => :app, :except => { :no_release => true } do
+    set :updated_assets, capture("find #{latest_release}/app/assets -type d -name .git -prune -o -mmin -#{max_asset_age} -type f -print", :except => { :no_release => true }).split
+  end
+
+  desc "Remove callback for asset precompiling unless assets were updated in most recent git commit."
+  task :conditionally_precompile, :roles => :app, :except => { :no_release => true } do
+    if(updated_assets.empty?)
+      callback = callbacks[:after].find{|c| c.source == "deploy:assets:precompile" }
+      callbacks[:after].delete(callback)
+      logger.info("Skipping asset precompiling, no updated assets.")
+    else
+      logger.info("#{updated_assets.length} updated assets. Will precompile.")
+    end
   end
 end
-after 'deploy:update_code', 'assets:precompile'
 
 # Some varnish utilities
 namespace :varnish do
