@@ -183,9 +183,9 @@ before "deploy", "version:tag"
 desc "Install server-side requirements"
 task :install do
   SpinningCursor.start do
-    banner "Installing requirements on the server"
+    banner "Installing software"
     type :dots
-    message "Done"
+    message "Installation complete"
   end
   run "echo 'export LANGUAGE=en_US.UTF-8' >> ~/.bashrc"
   run "echo 'export LANG=en_US.UTF-8' >> ~/.bashrc"
@@ -208,6 +208,11 @@ task :install do
   run "service nginx stop"
   run "service redis-server stop"
 
+  SpinningCursor.start do
+    banner "Configuring SSH"
+    type :dots
+    message "SSH configured"
+  end
   run "sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config;"
   run "sed -i 's/AllowTcpForwarding yes/AllowTcpForwarding no/g' /etc/ssh/sshd_config;"
   run "sed -i 's/X11Forwarding yes/X11Forwarding no/g' /etc/ssh/sshd_config;"
@@ -218,6 +223,12 @@ task :install do
   run "chmod 700 ~/.ssh"
   run "ssh-keygen -t rsa -b 4096 # 4096 bit encryption"
   run "sudo service ssh restart"
+
+  SpinningCursor.start do
+    banner "Installing ruby 1.9.3-p194"
+    type :dots
+    message "Ruby 1.9.3-p194 installed"
+  end
   run "apt-get install zlib1g-dev"
   run "git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv"
   run "echo '# rbenv setup' > /etc/profile.d/rbenv.sh"
@@ -236,6 +247,12 @@ task :install do
   run "rbenv rehash"
   run "apt-get install rubygems -y"
   run "gem install bundler"
+
+  SpinningCursor.start do
+    banner "Cleaning up"
+    type :dots
+    message "System cleaned up"
+  end
   run "apt-get autoclean"
   run "apt-get autoremove"
   run "apt-get clean"
@@ -247,9 +264,11 @@ task :install do
 
   SpinningCursor.stop
 
-  puts ""
-  puts "Run 'dpkg-reconfigure tzdata' on remote server to change the timezone. It is currently UTC+0000"
-  puts "---"
-  puts "Add the following key to github as a deployer ssh key, then run 'bundle exec cap deploy:cold' to deploy your application."
+  puts "+-------------------------------------------------------------------------------------------------+"
+  puts "| Run 'dpkg-reconfigure tzdata' on remote server to change the timezone. It is currently UTC+0000 |"
+  puts "+-------------------------------------------------------------------------------------------------+"
+  puts "| Add the following key to github as a deployer ssh key.                                          |"
+  puts "| Then run 'bundle exec cap deploy:cold' to deploy your application.                              |"
+  puts "+-------------------------------------------------------------------------------------------------+"
   puts capture('ssh root@141.0.175.185 "cat ~/.ssh/id_rsa.pub"')
 end
