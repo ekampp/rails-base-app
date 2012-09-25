@@ -153,7 +153,7 @@ before "deploy:restart", "redis:symlink"
 # Versioning
 namespace :version do
   desc "Tag before release"
-  task :tag do
+  task :tag, roles: :app, except: { no_release: true } do
     puts "Available release types:\n  1) build (default)\n  2) revision\n  3) minor\n  4) major"
     release = Capistrano::CLI.ui.ask("Select release type: ")
     release = case release.to_i; when 4; "major"; when 3; "minor"; when 2; "revision"; else "build"; end
