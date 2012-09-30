@@ -16,15 +16,11 @@
     = javascript_tag "if (window.location.hash == '#_=_') window.location.hash = '';"
 
   %body
-    #wrapper
-      =# render 'layouts/navbar'
-      .container
-        .row
-          .span12
-            = yield
-
-        / %footer
-        /   %p &copy; Emil Kampp 2012
+    .container-fluid#wrapper
+      .row-fluid
+        %nav.span2.main-menu= render 'layouts/contact_options'
+        %section.span10.main-content
+          = yield
 
     = javascript_include_tag "application"
     = yield :js if content_for? :js

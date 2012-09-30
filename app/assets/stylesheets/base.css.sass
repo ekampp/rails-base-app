@@ -1,14 +1,36 @@
+// Mixins
 @mixin inset-text
   text-shadow: 0 -1px #c7c7c7
 
+// HTML elements
 body
   background-color: #fff
   background-image: url("/assets/bg-pattern.png")
-  padding-top: 120px
   color: #333
   font-size: 16px
   line-height: 22px
-
+  font-weight: 200
+  @include min-screen(320)
+    font-size: 24px
+    line-height: 28px
+  @include min-screen(768)
+    font-size: 16px
+    line-height: 22px
+h1
+  font-size: 4em
+  line-height: 1em
+h2
+  font-size: 3em
+  line-height: 1em
+h3
+  font-size: 2em
+  line-height: 1em
+h4
+  font-size: 1em
+h1, h2, .icon
+  @include inset-text
+p
+  font-weight: 200
 a
   color: #333
   cursor: pointer
@@ -17,34 +39,51 @@ a
     text-decoration: none
     color: #792d20
 
+// Twitter bootstrap overwrites
+.lead
+  font-size: 1.2em
 .lead .label
   font-size: 0.8em
 
+// Helper classes
 .text-align-center
   text-align: center
-
 .fixed
   position: fixed
-
 .huge
   font-size: 7em
   line-height: 1.2em
-
-h1, h2, .icon
-  @include inset-text
-
-#wrapper
-  width: 1024px
-  margin: auto
-
-#contact-options-list
-  font-size: 6em
-  li
-    line-height: 1em
-
 .section-divider
   display: block
   height: 1.5em
 
-p
-  font-weight: 200
+// Main menu
+.main-menu
+  @extend .text-align-center
+  @include clearfix
+  @include min-screen(768) // iPad
+    padding-top: 50px
+
+  a
+    width: 75px
+    font-size: 75px
+    line-height: 75px
+    display: block
+    float: left
+    @include min-screen(1024) // iPad (landscape)
+      clear: left
+      font-size: 150px
+      line-height: 150px
+
+// Content wrapper
+#wrapper
+  margin: auto
+  width: 300px
+  @include min-screen(640) // iPhone
+    width: 580px
+  @include min-screen(768) // iPad (portrait)
+    width: 724px
+  @include min-screen(1024) // iPad (landscape)
+    width: 940px
+  @include min-screen(1224) // desktop and iPad3
+    width: 1070px

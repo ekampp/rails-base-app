@@ -12,8 +12,9 @@
 
 # Slabtext all `.slab-this` classes. This is delayed 100 miliseconds to allow
 # the dom to completely render.
+slabTextMaxFontSize = if window.matchMedia("(min-width: 768px)") then 200 else null
 setTimeout \
-  ->$(".slab-this").slabText({ fontRatio: 1.2 }),
+  ->$(".slab-this").slabText({ headerBreakpoint: 600, maxFontSize: slabTextMaxFontSize }),
   100
 
 $("a.direct-contact-option").each (i, link) ->
