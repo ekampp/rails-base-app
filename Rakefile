@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-EmilKampp::Application.load_tasks
+RailsBaseApp::Application.load_tasks

@@ -8,7 +8,7 @@ set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 logger.level = Logger::IMPORTANT
 
 set :user, "root"
-set :application, "emil_kampp"
+set :application, "rails_base_app"
 set :repository,  "git@github.com:ekampp/emil.kampp.git"
 set :deploy_to, "/www/#{fetch(:application)}"
 set :server_name, "emil.kampp.me"
@@ -146,7 +146,7 @@ after "deploy", "varnish:purge"
 namespace :redis do
   desc "Symlink to shared dir"
   task :symlink do
-    run "mkdir -p /www/emil_kampp/shared/db/redis; cd #{current_path}/db; ln -nsf /www/emil_kampp/shared/db/redis redis"
+    run "mkdir -p /www/rails_base_app/shared/db/redis; cd #{current_path}/db; ln -nsf /www/rails_base_app/shared/db/redis redis"
   end
 end
 before "deploy:restart", "redis:symlink"

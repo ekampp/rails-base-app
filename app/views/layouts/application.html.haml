@@ -2,7 +2,7 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title= content_for?(:title) ? yield(:title) : "EmilKampp"
+    %title= content_for?(:title) ? yield(:title) : "RailsBaseApp"
     = csrf_meta_tags unless @disable_csrf_token
 
     /[if lt IE 9]
@@ -18,8 +18,7 @@
   %body
     .container-fluid#wrapper
       .row-fluid
-        %nav.span2.main-menu= render 'layouts/contact_options'
-        %section.span10.main-content
+        .span12.main-content
           = yield
 
     = javascript_include_tag "application"

@@ -1,4 +1,4 @@
-EmilKampp::Application.routes.draw do
+RailsBaseApp::Application.routes.draw do
 
   resources :projects, only: [ :show ]
 

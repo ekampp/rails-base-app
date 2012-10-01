@@ -115,8 +115,8 @@ sub vcl_hash {
   # The regex is PCRE, so it works only in trunk. If you wish to use it
   # with Varnish 2.0, remove the '?' non-greedy operator and be aware it
   # changes the behavior of the regex.
-  if( req.http.Cookie ~ "_emil_kampp_session" && req.http.Cookie ~ "_logged_in" ) {
-    set req.http.X-Varnish-Hashed-On = regsub( req.http.Cookie, "^.*?_emil_kampp_session=([^;]*);*.*$", "\1" );
+  if( req.http.Cookie ~ "_rails_base_app_session" && req.http.Cookie ~ "_logged_in" ) {
+    set req.http.X-Varnish-Hashed-On = regsub( req.http.Cookie, "^.*?_rails_base_app_session=([^;]*);*.*$", "\1" );
   }
 
   # if the esi request is UUID specific, add the UUID to the hashing

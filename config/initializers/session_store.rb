@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-EmilKampp::Application.config.session_store :cookie_store, key: '_emil_kampp_session'
+RailsBaseApp::Application.config.session_store :cookie_store, key: '_rails_base_app_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# EmilKampp::Application.config.session_store :active_record_store
+# RailsBaseApp::Application.config.session_store :active_record_store
