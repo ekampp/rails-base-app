@@ -3,25 +3,27 @@
     %h1.slab-this
       %span.slabtext Shh...
       %span.slabtext Sofware at work.
-    %p.lead
+    %blockquote.large.well
       I believe that information should be shared and easily accessible.
       I'm currently working hard to do just that.
 
 %section.row-fluid
-  .span2
-    %p.btn-group.text-align-center.btn-group-vertical
-      %a{ class: "btn btn-large direct-contact-option", |
-                 "data-contact-information" => "+45 42427176" } |
-        %i.icon.icon-phone
+  .span5
+    %p.badges.contact-badges
+      %a{ class: "direct-contact-option circle-badge blue-badge", |
+                 "data-contact-information" => "+45 42427176", |
+                 "id" => "direct-contact-phone" } |
+        %i.icon.icon-phone.icon-white
         Call
-      %a{ class: "btn btn-large direct-contact-option", |
-                 "data-contact-information" => "emil@kampp.me" } |
-        %i.icon.icon-pencil
+      %a{ class: "direct-contact-option circle-badge blue-badge", |
+                 "data-contact-information" => "emil@kampp.me", |
+                 "id" => "direct-contact-email" } |
+        %i.icon.icon-pencil.icon-white
         Mail
-  .span10
-    %h3 1. Do you feel strongly about something?
-    %h3 2. Want that communicated &amp; shared?
-    %h3 3. Please feel free to contact me.
+  .span7
+    %p.lead 1. Do you feel strongly about something?
+    %p.lead 2. Do you want it shared and out-there?
+    %p.lead 3. Please contact me.
 
 .section-divider
 

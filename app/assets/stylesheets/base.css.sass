@@ -87,3 +87,33 @@ a
     width: 940px
   @include min-screen(1224) // desktop and iPad3
     width: 1070px
+
+// Direct contact icons
+.contact-badges
+  margin-top: 2em
+  margin-bottom: 2em
+
+// Badges
+.circle-badge
+  @extend .text-align-center
+  display: inline-block
+  line-height: 165px
+  width: 168px
+  height: 165px
+  background-image: url(image_path("badges.png"))
+  background-repeat: no-repeat
+  color: #fff
+  font-size: 2em
+  font-weight: normal
+  &:hover
+    color: #fff
+.blue-badge
+  background-position: -168px -8px
+
+// Blockquotes
+blockquote
+  @extend .text-align-center
+  margin: 1em auto
+blockquote.large
+  font-size: 2em
+  line-height: 1.3em

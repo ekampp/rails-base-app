@@ -140,6 +140,7 @@ namespace :varnish do
     run "curl -X PURGE emil.kampp.me"
   end
 end
+after "deploy", "varnish:purge"
 
 # Redis
 namespace :redis do
